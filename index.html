@@ -2,100 +2,77 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IKU Bidang KBP</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial; font-size: 14px; background: #f1f5f9; }
-
-/* HEADER */
-.hdr { background: #1e40af; color: white; padding: 14px 16px; }
-.hdr h1 { font-size: 15px; font-weight: bold; }
-.hdr p { font-size: 11px; color: #bfdbfe; margin-top: 2px; }
-
-/* QUARTER BAR */
-.qbar { background: white; padding: 10px 12px; border-bottom: 1px solid #ddd; display: flex; gap: 6px; overflow-x: auto; }
-.qbar button { flex-shrink: 0; padding: 6px 16px; border-radius: 20px; border: 1px solid #ccc; font-size: 13px; background: #f8fafc; cursor: pointer; }
-.qbar button.on { background: #1e40af; color: white; border-color: #1e40af; }
-
-/* TAB BAR */
-.tbar { display: flex; background: white; border-bottom: 2px solid #e2e8f0; }
-.tbar button { flex: 1; padding: 10px 4px; border: none; background: white; font-size: 12px; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
-.tbar button.on { color: #1e40af; border-bottom: 3px solid #1e40af; font-weight: bold; }
-
-/* WRAP */
-.wrap { padding: 14px 12px; }
-
-/* SUMMARY CARDS - 2 column grid */
-.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.card { background: white; border-radius: 10px; padding: 14px 12px; border: 1px solid #e2e8f0; text-align: center; }
-.card .big { font-size: 26px; font-weight: bold; color: #1e293b; }
-.card .lbl { font-size: 11px; color: #888; margin-top: 3px; }
-.card.full { grid-column: span 2; }
-
-/* PROGRESS BAR */
-.prog-wrap { background: white; border-radius: 10px; border: 1px solid #e2e8f0; padding: 14px; margin-bottom: 10px; }
-.prog-wrap h3 { font-size: 12px; color: #64748b; margin-bottom: 8px; }
-.prog-bar-bg { background: #e2e8f0; border-radius: 20px; height: 8px; width: 100%; }
-.prog-bar-fg { background: #22c55e; border-radius: 20px; height: 8px; }
-
-/* IKU LIST CARDS */
-.iku-card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; padding: 12px 14px; margin-bottom: 8px; }
-.iku-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-.iku-card .name { font-size: 12px; font-weight: bold; color: #334155; flex: 1; padding-right: 8px; }
-.iku-card .val { font-size: 18px; font-weight: bold; }
-.iku-card .bot { display: flex; justify-content: space-between; align-items: center; }
-.iku-card .tgt { font-size: 11px; color: #94a3b8; }
-.iku-card .bar-bg { background: #e2e8f0; border-radius: 20px; height: 5px; flex: 1; margin: 0 8px; }
-.iku-card .bar-fg { border-radius: 20px; height: 5px; }
-.badge { font-size: 10px; font-weight: bold; padding: 2px 7px; border-radius: 20px; white-space: nowrap; }
-.g { background: #dcfce7; color: #16a34a; }
-.y { background: #fef9c3; color: #b45309; }
-.r { background: #fee2e2; color: #dc2626; }
-.nd { background: #f1f5f9; color: #888; }
-
-/* INPUT TAB */
-.sec-title { font-size: 13px; font-weight: bold; color: #334155; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
-.ind-card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 8px; overflow: hidden; }
-.ind-hd { padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-.ind-hd:active { background: #f8fafc; }
-.ind-hd .iname { font-size: 12px; font-weight: bold; color: #334155; }
-.ind-hd .ival { font-size: 15px; font-weight: bold; }
-.ind-hd .arr { font-size: 10px; color: #94a3b8; margin-left: 6px; }
-.ind-body { display: none; border-top: 1px solid #f1f5f9; padding: 12px 14px; background: #fafafa; }
-.ind-body .fml { font-size: 11px; color: #94a3b8; font-style: italic; margin-bottom: 10px; }
-.seksi-block { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
-.seksi-block .sn { font-size: 11px; font-weight: bold; color: #1d4ed8; margin-bottom: 6px; }
-.seksi-block label { font-size: 11px; color: #666; display: block; margin-top: 6px; }
-.seksi-block input { width: 100%; border: 1px solid #ddd; border-radius: 6px; padding: 7px 10px; font-size: 14px; margin-top: 2px; }
-.seksi-block .res { font-size: 11px; color: #666; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9; }
-.bid-block { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; }
-.bid-block .sn { font-size: 11px; font-weight: bold; color: #7c3aed; margin-bottom: 6px; }
-.bid-block label { font-size: 11px; color: #666; display: block; margin-top: 6px; }
-.bid-block input { width: 100%; border: 1px solid #ddd; border-radius: 6px; padding: 7px 10px; font-size: 14px; margin-top: 2px; }
-.bid-block .res { font-size: 11px; color: #666; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9; }
+body { font-family: Arial; font-size: 13px; background: #f1f5f9; }
+h1 { background: #1e40af; color: white; margin: 0; padding: 14px 20px; font-size: 16px; }
+h1 span { display: block; font-size: 11px; font-weight: normal; color: #bfdbfe; }
+.bar { background: white; padding: 8px 20px; border-bottom: 1px solid #ddd; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.bar button { padding: 4px 12px; border-radius: 20px; border: 1px solid #ccc; cursor: pointer; font-size: 12px; background: #f8fafc; }
+.on { background: #1e40af !important; color: white !important; border-color: #1e40af !important; }
+.savebar { background: #f8fafc; padding: 6px 20px; border-bottom: 1px solid #e2e8f0; text-align: right; display: flex; align-items: center; justify-content: space-between; }
+.savebar span { font-size: 11px; color: #94a3b8; }
+#savebtn { background: #1e40af; color: white; border: none; border-radius: 20px; padding: 6px 20px; font-size: 12px; font-weight: bold; cursor: pointer; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.cards { display: table; width: 100%; border-spacing: 10px; margin-bottom: 4px; }
+.card { display: table-cell; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 12px; text-align: center; }
+.card .big { font-size: 22px; font-weight: bold; }
+.card .lbl { font-size: 11px; color: #888; margin-top: 2px; }
+.box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin-top: 12px; }
+.box h2 { font-size: 13px; margin: 0 0 10px; color: #334155; }
+/* SUB TABS */
+.subtabs { display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 12px; }
+.subtabs button { padding: 7px 18px; border: none; background: white; font-size: 12px; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.subtabs button.on { color: #1e40af; border-bottom: 3px solid #1e40af; font-weight: bold; background: white; }
+/* TABLES */
+table { width: 100%; border-collapse: collapse; }
+th { background: #f1f5f9; padding: 8px; font-size: 11px; color: #555; border-bottom: 2px solid #ddd; text-align: left; }
+th.c { text-align: center; }
+td { padding: 8px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+td.c { text-align: center; }
+tr:nth-child(even) td { background: #fafafa; }
+.g { background: #dcfce7; color: #16a34a; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+.y { background: #fef9c3; color: #b45309; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+.r { background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+.nd { background: #f1f5f9; color: #888; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+/* ACCORDION */
+.abtn { width: 100%; text-align: left; background: #f8fafc; border: 1px solid #ddd; border-radius: 6px; padding: 8px 12px; cursor: pointer; margin-bottom: 4px; display: block; }
+.abtn:hover { background: #e8f0fe; }
+.abody { display: none; border: 1px solid #ddd; border-top: none; border-radius: 0 0 6px 6px; padding: 10px; margin-bottom: 6px; background: #fafafa; }
+.srow { width: 100%; border-collapse: separate; border-spacing: 6px; }
+.scell { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 8px; vertical-align: top; width: 25%; }
+.sn { font-size: 11px; font-weight: bold; color: #1d4ed8; margin-bottom: 6px; }
+.scell label { font-size: 11px; color: #666; display: block; margin-top: 4px; }
+.scell input { width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 4px 6px; font-size: 12px; }
+.rlbl { font-size: 11px; color: #666; margin-top: 6px; padding-top: 5px; border-top: 1px solid #eee; }
+.bidsec { max-width: 240px; background: white; border: 1px solid #ddd; border-radius: 6px; padding: 8px; }
+.bidsec label { font-size: 11px; color: #666; display: block; margin-top: 4px; }
+.bidsec input { width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 4px 6px; font-size: 12px; }
+.capaian-good { color: #16a34a; font-weight: bold; }
+.capaian-warn { color: #b45309; font-weight: bold; }
+.capaian-bad { color: #dc2626; font-weight: bold; }
 </style>
 </head>
 <body>
-
-<div class="hdr">
-  <h1>IKU Bidang KBP</h1>
-  <p>Kanwil DJP Jakarta Pusat</p>
-</div>
-
-<div class="qbar">
+<h1>Indikator Kinerja Utama
+<span>Bidang Keberatan, Banding, dan Pengurangan - Kanwil DJP Jakarta Pusat</span>
+</h1>
+<div class="bar">
+  <span style="font-size:12px;color:#555;margin-right:4px">Periode:</span>
   <button class="on" onclick="setQ(0,this)">Q1 2026</button>
   <button onclick="setQ(1,this)">Q2 2026</button>
   <button onclick="setQ(2,this)">Q3 2026</button>
   <button onclick="setQ(3,this)">Q4 2026</button>
-</div>
-
-<div class="tbar">
+  &nbsp;
   <button class="on" onclick="setTab(0,this)">Ringkasan</button>
   <button onclick="setTab(1,this)">Input Data</button>
+  <button onclick="setTab(2,this)">Tren</button>
 </div>
-<div style="background:#f8fafc;padding:8px 12px;border-bottom:1px solid #e2e8f0;text-align:right">
-  <button id="savebtn" onclick="saveData()" style="background:#1e40af;color:white;border:none;border-radius:20px;padding:7px 20px;font-size:13px;font-weight:bold;cursor:pointer">Simpan Data</button>
+<div class="savebar">
+  <span id="sync-status">Belum tersimpan</span>
+  <button id="savebtn" onclick="saveData()">Simpan Data</button>
 </div>
 
 <div class="wrap">
@@ -104,248 +81,247 @@ body { font-family: Arial; font-size: 14px; background: #f1f5f9; }
 <div id="T0">
   <div class="cards">
     <div class="card"><div class="big" id="K0">-</div><div class="lbl">IKU Tercapai</div></div>
-    <div class="card"><div class="big" id="K1">-</div><div class="lbl">Rata-rata</div></div>
+    <div class="card"><div class="big" id="K1">-</div><div class="lbl">Rata-rata Capaian</div></div>
     <div class="card"><div class="big" id="K2" style="color:#dc2626">-</div><div class="lbl">Belum Tercapai</div></div>
-    <div class="card"><div class="big" style="color:#16a34a" id="K3">-</div><div class="lbl">Sudah Tercapai</div></div>
+    <div class="card"><div class="big">4</div><div class="lbl">Seksi Aktif</div></div>
   </div>
 
-  <div class="prog-wrap">
-    <h3 id="prog-lbl">Progress Q1 2026</h3>
-    <div class="prog-bar-bg"><div class="prog-bar-fg" id="prog-bar" style="width:0%"></div></div>
-    <p style="font-size:11px;color:#94a3b8;margin-top:4px" id="prog-txt">0 dari 9 indikator tercapai</p>
-  </div>
+  <div class="box">
+    <!-- SUB TABS inside Ringkasan -->
+    <div class="subtabs">
+      <button class="on" onclick="setSubTab(0,this)">Status Indikator</button>
+      <button onclick="setSubTab(1,this)">Realisasi per Seksi</button>
+      <button onclick="setSubTab(2,this)">Capaian</button>
+    </div>
 
-  <div id="iku-list"></div>
+    <!-- SUB TAB 0: Status -->
+    <div id="ST0">
+      <h2 id="OVH">Status Indikator</h2>
+      <table><thead><tr><th>Indikator</th><th class="c">Target</th><th class="c">Realisasi</th><th class="c">Status</th></tr></thead>
+      <tbody id="OVT"></tbody></table>
+    </div>
+
+    <!-- SUB TAB 1: Realisasi per Seksi -->
+    <div id="ST1" style="display:none">
+      <h2>Realisasi per Seksi</h2>
+      <table>
+        <thead><tr><th>Indikator</th><th class="c">Target</th><th class="c">KBP I</th><th class="c">KBP II</th><th class="c">KBP III</th><th class="c">KBP IV</th><th class="c">Total</th></tr></thead>
+        <tbody id="SEKSI-TBL"></tbody>
+      </table>
+    </div>
+
+    <!-- SUB TAB 2: Capaian -->
+    <div id="ST2" style="display:none">
+      <h2>Capaian (Realisasi / Target Trajectory)</h2>
+      <table>
+        <thead><tr><th>Indikator</th><th class="c">Target</th><th class="c">Realisasi</th><th class="c">Capaian</th><th class="c">Status</th></tr></thead>
+        <tbody id="CAP-TBL"></tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <!-- TAB 1: INPUT DATA -->
 <div id="T1" style="display:none">
-  <p style="font-size:12px;color:#64748b;margin-bottom:12px">Ketuk indikator untuk input data. Hasil dihitung otomatis.</p>
+<p style="color:#666;font-size:12px;margin-bottom:10px">Klik indikator untuk input data. Hasil dihitung otomatis.</p>
 
-  <!-- (a) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(0)">
-      <span class="iname">(a) Keberatan Tepat Waktu</span>
-      <span><b class="ival" id="H0" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A0">
-      <p class="fml">SK Tepat Waktu / SK Terbit</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f0_0_0" onchange="sv(0,0)" value="0">
-        <label>SK Terbit</label><input type="number" id="f0_0_1" onchange="sv(0,0)" value="0">
-        <div class="res">Realisasi: <b id="s0_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f0_1_0" onchange="sv(0,1)" value="0">
-        <label>SK Terbit</label><input type="number" id="f0_1_1" onchange="sv(0,1)" value="0">
-        <div class="res">Realisasi: <b id="s0_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f0_2_0" onchange="sv(0,2)" value="0">
-        <label>SK Terbit</label><input type="number" id="f0_2_1" onchange="sv(0,2)" value="0">
-        <div class="res">Realisasi: <b id="s0_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f0_3_0" onchange="sv(0,3)" value="0">
-        <label>SK Terbit</label><input type="number" id="f0_3_1" onchange="sv(0,3)" value="0">
-        <div class="res">Realisasi: <b id="s0_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (b) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(1)">
-      <span class="iname">(b) Nonkeberatan Tepat Waktu</span>
-      <span><b class="ival" id="H1" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A1">
-      <p class="fml">SK Tepat Waktu / SK Terbit</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f1_0_0" onchange="sv(1,0)" value="0">
-        <label>SK Terbit</label><input type="number" id="f1_0_1" onchange="sv(1,0)" value="0">
-        <div class="res">Realisasi: <b id="s1_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f1_1_0" onchange="sv(1,1)" value="0">
-        <label>SK Terbit</label><input type="number" id="f1_1_1" onchange="sv(1,1)" value="0">
-        <div class="res">Realisasi: <b id="s1_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f1_2_0" onchange="sv(1,2)" value="0">
-        <label>SK Terbit</label><input type="number" id="f1_2_1" onchange="sv(1,2)" value="0">
-        <div class="res">Realisasi: <b id="s1_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>SK Tepat Waktu</label><input type="number" id="f1_3_0" onchange="sv(1,3)" value="0">
-        <label>SK Terbit</label><input type="number" id="f1_3_1" onchange="sv(1,3)" value="0">
-        <div class="res">Realisasi: <b id="s1_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (c) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(2)">
-      <span class="iname">(c) Sengketa Perpajakan Dipertahankan</span>
-      <span><b class="ival" id="H2" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A2">
-      <p class="fml">65% x (Konstanta SK/SK Terbit) + 35% x (DKB/47%)</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>Konstanta SK Banding</label><input type="number" id="f2_0_0" onchange="sv(2,0)" value="0">
-        <label>SK Terbit</label><input type="number" id="f2_0_1" onchange="sv(2,0)" value="0">
-        <label>DKB (%)</label><input type="number" id="f2_0_2" onchange="sv(2,0)" value="0">
-        <div class="res">Realisasi: <b id="s2_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>Konstanta SK Banding</label><input type="number" id="f2_1_0" onchange="sv(2,1)" value="0">
-        <label>SK Terbit</label><input type="number" id="f2_1_1" onchange="sv(2,1)" value="0">
-        <label>DKB (%)</label><input type="number" id="f2_1_2" onchange="sv(2,1)" value="0">
-        <div class="res">Realisasi: <b id="s2_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>Konstanta SK Banding</label><input type="number" id="f2_2_0" onchange="sv(2,2)" value="0">
-        <label>SK Terbit</label><input type="number" id="f2_2_1" onchange="sv(2,2)" value="0">
-        <label>DKB (%)</label><input type="number" id="f2_2_2" onchange="sv(2,2)" value="0">
-        <div class="res">Realisasi: <b id="s2_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>Konstanta SK Banding</label><input type="number" id="f2_3_0" onchange="sv(2,3)" value="0">
-        <label>SK Terbit</label><input type="number" id="f2_3_1" onchange="sv(2,3)" value="0">
-        <label>DKB (%)</label><input type="number" id="f2_3_2" onchange="sv(2,3)" value="0">
-        <div class="res">Realisasi: <b id="s2_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (d) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(3)">
-      <span class="iname">(d) SUB Tepat Waktu</span>
-      <span><b class="ival" id="H3" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A3">
-      <p class="fml">SUB Tepat Waktu / SUB Terbit</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>SUB Tepat Waktu</label><input type="number" id="f3_0_0" onchange="sv(3,0)" value="0">
-        <label>SUB Terbit</label><input type="number" id="f3_0_1" onchange="sv(3,0)" value="0">
-        <div class="res">Realisasi: <b id="s3_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>SUB Tepat Waktu</label><input type="number" id="f3_1_0" onchange="sv(3,1)" value="0">
-        <label>SUB Terbit</label><input type="number" id="f3_1_1" onchange="sv(3,1)" value="0">
-        <div class="res">Realisasi: <b id="s3_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>SUB Tepat Waktu</label><input type="number" id="f3_2_0" onchange="sv(3,2)" value="0">
-        <label>SUB Terbit</label><input type="number" id="f3_2_1" onchange="sv(3,2)" value="0">
-        <div class="res">Realisasi: <b id="s3_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>SUB Tepat Waktu</label><input type="number" id="f3_3_0" onchange="sv(3,3)" value="0">
-        <label>SUB Terbit</label><input type="number" id="f3_3_1" onchange="sv(3,3)" value="0">
-        <div class="res">Realisasi: <b id="s3_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (e) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(4)">
-      <span class="iname">(e) STg Tepat Waktu</span>
-      <span><b class="ival" id="H4" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A4">
-      <p class="fml">TG Tepat Waktu / TG Terbit</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>TG Tepat Waktu</label><input type="number" id="f4_0_0" onchange="sv(4,0)" value="0">
-        <label>TG Terbit</label><input type="number" id="f4_0_1" onchange="sv(4,0)" value="0">
-        <div class="res">Realisasi: <b id="s4_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>TG Tepat Waktu</label><input type="number" id="f4_1_0" onchange="sv(4,1)" value="0">
-        <label>TG Terbit</label><input type="number" id="f4_1_1" onchange="sv(4,1)" value="0">
-        <div class="res">Realisasi: <b id="s4_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>TG Tepat Waktu</label><input type="number" id="f4_2_0" onchange="sv(4,2)" value="0">
-        <label>TG Terbit</label><input type="number" id="f4_2_1" onchange="sv(4,2)" value="0">
-        <div class="res">Realisasi: <b id="s4_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>TG Tepat Waktu</label><input type="number" id="f4_3_0" onchange="sv(4,3)" value="0">
-        <label>TG Terbit</label><input type="number" id="f4_3_1" onchange="sv(4,3)" value="0">
-        <div class="res">Realisasi: <b id="s4_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (f) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(5)">
-      <span class="iname">(f) Argumentasi Hukum Tepat Waktu</span>
-      <span><b class="ival" id="H5" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A5">
-      <p class="fml">Pentul Closing Tepat / Pentul Closing Terbit</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f5_0_0" onchange="sv(5,0)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f5_0_1" onchange="sv(5,0)" value="0">
-        <div class="res">Realisasi: <b id="s5_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f5_1_0" onchange="sv(5,1)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f5_1_1" onchange="sv(5,1)" value="0">
-        <div class="res">Realisasi: <b id="s5_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f5_2_0" onchange="sv(5,2)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f5_2_1" onchange="sv(5,2)" value="0">
-        <div class="res">Realisasi: <b id="s5_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f5_3_0" onchange="sv(5,3)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f5_3_1" onchange="sv(5,3)" value="0">
-        <div class="res">Realisasi: <b id="s5_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (g) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(6)">
-      <span class="iname">(g) Strategi Penanganan Sengketa</span>
-      <span><b class="ival" id="H6" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A6">
-      <p class="fml">Pentul Closing Tepat / Pentul Closing Terbit</p>
-      <div class="seksi-block"><div class="sn">KBP I</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f6_0_0" onchange="sv(6,0)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f6_0_1" onchange="sv(6,0)" value="0">
-        <div class="res">Realisasi: <b id="s6_0" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP II</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f6_1_0" onchange="sv(6,1)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f6_1_1" onchange="sv(6,1)" value="0">
-        <div class="res">Realisasi: <b id="s6_1" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP III</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f6_2_0" onchange="sv(6,2)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f6_2_1" onchange="sv(6,2)" value="0">
-        <div class="res">Realisasi: <b id="s6_2" style="color:#aaa">-</b></div></div>
-      <div class="seksi-block"><div class="sn">KBP IV</div>
-        <label>Pentul Closing Tepat</label><input type="number" id="f6_3_0" onchange="sv(6,3)" value="0">
-        <label>Pentul Closing Terbit</label><input type="number" id="f6_3_1" onchange="sv(6,3)" value="0">
-        <div class="res">Realisasi: <b id="s6_3" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (h) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(7)">
-      <span class="iname">(h) Kualitas Kompetensi SDM</span>
-      <span><b class="ival" id="H7" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A7">
-      <p class="fml">Nilai Realisasi (%)</p>
-      <div class="bid-block"><div class="sn">Bidang</div>
-        <label>Realisasi (%)</label>
-        <input type="number" id="f7_0" onchange="svb(7)" value="0" min="0" max="100">
-        <div class="res">Realisasi: <b id="b7" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
-  <!-- (i) -->
-  <div class="ind-card">
-    <div class="ind-hd" onclick="tog(8)">
-      <span class="iname">(i) Penguatan Budaya dan Bintal</span>
-      <span><b class="ival" id="H8" style="color:#aaa">-</b><span class="arr">&#9660;</span></span>
-    </div>
-    <div class="ind-body" id="A8">
-      <p class="fml">Nilai Realisasi (%)</p>
-      <div class="bid-block"><div class="sn">Bidang</div>
-        <label>Realisasi (%)</label>
-        <input type="number" id="f8_0" onchange="svb(8)" value="0" min="0" max="100">
-        <div class="res">Realisasi: <b id="b8" style="color:#aaa">-</b></div></div>
-    </div>
-  </div>
-
+<button class="abtn" onclick="tog(0)">(a) Keberatan Tepat Waktu <span id="H0" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A0">
+<small style="color:#888">Formula: SK Tepat Waktu / SK Terbit</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>SK Tepat Waktu</label><input type="number" id="f0_0_0" onchange="sv(0,0)" value="0">
+<label>SK Terbit</label><input type="number" id="f0_0_1" onchange="sv(0,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s0_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>SK Tepat Waktu</label><input type="number" id="f0_1_0" onchange="sv(0,1)" value="0">
+<label>SK Terbit</label><input type="number" id="f0_1_1" onchange="sv(0,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s0_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>SK Tepat Waktu</label><input type="number" id="f0_2_0" onchange="sv(0,2)" value="0">
+<label>SK Terbit</label><input type="number" id="f0_2_1" onchange="sv(0,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s0_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>SK Tepat Waktu</label><input type="number" id="f0_3_0" onchange="sv(0,3)" value="0">
+<label>SK Terbit</label><input type="number" id="f0_3_1" onchange="sv(0,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s0_3">-</b></div></td>
+</tr></table>
 </div>
+
+<button class="abtn" onclick="tog(1)">(b) Nonkeberatan Tepat Waktu <span id="H1" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A1">
+<small style="color:#888">Formula: SK Tepat Waktu / SK Terbit</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>SK Tepat Waktu</label><input type="number" id="f1_0_0" onchange="sv(1,0)" value="0">
+<label>SK Terbit</label><input type="number" id="f1_0_1" onchange="sv(1,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s1_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>SK Tepat Waktu</label><input type="number" id="f1_1_0" onchange="sv(1,1)" value="0">
+<label>SK Terbit</label><input type="number" id="f1_1_1" onchange="sv(1,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s1_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>SK Tepat Waktu</label><input type="number" id="f1_2_0" onchange="sv(1,2)" value="0">
+<label>SK Terbit</label><input type="number" id="f1_2_1" onchange="sv(1,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s1_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>SK Tepat Waktu</label><input type="number" id="f1_3_0" onchange="sv(1,3)" value="0">
+<label>SK Terbit</label><input type="number" id="f1_3_1" onchange="sv(1,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s1_3">-</b></div></td>
+</tr></table>
+</div>
+
+<button class="abtn" onclick="tog(2)">(c) Sengketa Perpajakan Dipertahankan <span id="H2" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A2">
+<small style="color:#888">Formula: 65% x (Konstanta SK/SK Terbit) + 35% x (DKB/47%)</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>Konstanta SK Banding</label><input type="number" id="f2_0_0" onchange="sv(2,0)" value="0">
+<label>SK Terbit</label><input type="number" id="f2_0_1" onchange="sv(2,0)" value="0">
+<label>DKB (%)</label><input type="number" id="f2_0_2" onchange="sv(2,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s2_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>Konstanta SK Banding</label><input type="number" id="f2_1_0" onchange="sv(2,1)" value="0">
+<label>SK Terbit</label><input type="number" id="f2_1_1" onchange="sv(2,1)" value="0">
+<label>DKB (%)</label><input type="number" id="f2_1_2" onchange="sv(2,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s2_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>Konstanta SK Banding</label><input type="number" id="f2_2_0" onchange="sv(2,2)" value="0">
+<label>SK Terbit</label><input type="number" id="f2_2_1" onchange="sv(2,2)" value="0">
+<label>DKB (%)</label><input type="number" id="f2_2_2" onchange="sv(2,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s2_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>Konstanta SK Banding</label><input type="number" id="f2_3_0" onchange="sv(2,3)" value="0">
+<label>SK Terbit</label><input type="number" id="f2_3_1" onchange="sv(2,3)" value="0">
+<label>DKB (%)</label><input type="number" id="f2_3_2" onchange="sv(2,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s2_3">-</b></div></td>
+</tr></table>
+</div>
+
+<button class="abtn" onclick="tog(3)">(d) SUB Tepat Waktu <span id="H3" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A3">
+<small style="color:#888">Formula: SUB Tepat Waktu / SUB Terbit</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>SUB Tepat Waktu</label><input type="number" id="f3_0_0" onchange="sv(3,0)" value="0">
+<label>SUB Terbit</label><input type="number" id="f3_0_1" onchange="sv(3,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s3_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>SUB Tepat Waktu</label><input type="number" id="f3_1_0" onchange="sv(3,1)" value="0">
+<label>SUB Terbit</label><input type="number" id="f3_1_1" onchange="sv(3,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s3_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>SUB Tepat Waktu</label><input type="number" id="f3_2_0" onchange="sv(3,2)" value="0">
+<label>SUB Terbit</label><input type="number" id="f3_2_1" onchange="sv(3,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s3_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>SUB Tepat Waktu</label><input type="number" id="f3_3_0" onchange="sv(3,3)" value="0">
+<label>SUB Terbit</label><input type="number" id="f3_3_1" onchange="sv(3,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s3_3">-</b></div></td>
+</tr></table>
+</div>
+
+<button class="abtn" onclick="tog(4)">(e) STg Tepat Waktu <span id="H4" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A4">
+<small style="color:#888">Formula: TG Tepat Waktu / TG Terbit</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>TG Tepat Waktu</label><input type="number" id="f4_0_0" onchange="sv(4,0)" value="0">
+<label>TG Terbit</label><input type="number" id="f4_0_1" onchange="sv(4,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s4_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>TG Tepat Waktu</label><input type="number" id="f4_1_0" onchange="sv(4,1)" value="0">
+<label>TG Terbit</label><input type="number" id="f4_1_1" onchange="sv(4,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s4_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>TG Tepat Waktu</label><input type="number" id="f4_2_0" onchange="sv(4,2)" value="0">
+<label>TG Terbit</label><input type="number" id="f4_2_1" onchange="sv(4,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s4_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>TG Tepat Waktu</label><input type="number" id="f4_3_0" onchange="sv(4,3)" value="0">
+<label>TG Terbit</label><input type="number" id="f4_3_1" onchange="sv(4,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s4_3">-</b></div></td>
+</tr></table>
+</div>
+
+<button class="abtn" onclick="tog(5)">(f) Argumentasi Hukum Tepat Waktu <span id="H5" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A5">
+<small style="color:#888">Formula: Pentul Closing Tepat / Pentul Closing Terbit</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f5_0_0" onchange="sv(5,0)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f5_0_1" onchange="sv(5,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s5_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f5_1_0" onchange="sv(5,1)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f5_1_1" onchange="sv(5,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s5_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f5_2_0" onchange="sv(5,2)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f5_2_1" onchange="sv(5,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s5_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f5_3_0" onchange="sv(5,3)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f5_3_1" onchange="sv(5,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s5_3">-</b></div></td>
+</tr></table>
+</div>
+
+<button class="abtn" onclick="tog(6)">(g) Strategi Penanganan Sengketa <span id="H6" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A6">
+<small style="color:#888">Formula: Pentul Closing Tepat / Pentul Closing Terbit</small><br><br>
+<table class="srow"><tr>
+<td class="scell"><div class="sn">KBP I</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f6_0_0" onchange="sv(6,0)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f6_0_1" onchange="sv(6,0)" value="0">
+<div class="rlbl">Realisasi: <b id="s6_0">-</b></div></td>
+<td class="scell"><div class="sn">KBP II</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f6_1_0" onchange="sv(6,1)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f6_1_1" onchange="sv(6,1)" value="0">
+<div class="rlbl">Realisasi: <b id="s6_1">-</b></div></td>
+<td class="scell"><div class="sn">KBP III</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f6_2_0" onchange="sv(6,2)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f6_2_1" onchange="sv(6,2)" value="0">
+<div class="rlbl">Realisasi: <b id="s6_2">-</b></div></td>
+<td class="scell"><div class="sn">KBP IV</div>
+<label>Pentul Closing Tepat</label><input type="number" id="f6_3_0" onchange="sv(6,3)" value="0">
+<label>Pentul Closing Terbit</label><input type="number" id="f6_3_1" onchange="sv(6,3)" value="0">
+<div class="rlbl">Realisasi: <b id="s6_3">-</b></div></td>
+</tr></table>
+</div>
+
+<button class="abtn" onclick="tog(7)">(h) Kualitas Kompetensi SDM <span id="H7" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A7">
+<small style="color:#888">Formula: Nilai Realisasi (%)</small><br><br>
+<div class="bidsec">
+<div class="sn" style="color:#7c3aed">Bidang</div>
+<label>Realisasi (%)</label>
+<input type="number" id="f7_0" onchange="svb(7)" value="0" min="0" max="100">
+<div class="rlbl">Realisasi: <b id="b7">-</b></div>
+</div>
+</div>
+
+<button class="abtn" onclick="tog(8)">(i) Penguatan Budaya dan Bintal <span id="H8" style="float:right;font-weight:bold">-</span></button>
+<div class="abody" id="A8">
+<small style="color:#888">Formula: Nilai Realisasi (%)</small><br><br>
+<div class="bidsec">
+<div class="sn" style="color:#7c3aed">Bidang</div>
+<label>Realisasi (%)</label>
+<input type="number" id="f8_0" onchange="svb(8)" value="0" min="0" max="100">
+<div class="rlbl">Realisasi: <b id="b8">-</b></div>
+</div>
+</div>
+</div>
+
+<!-- TAB 2: TREN -->
+<div id="T2" style="display:none">
+<div class="box">
+<h2>Tren Realisasi per Kuartal</h2>
+<table><thead><tr><th>Indikator</th><th class="c">Target</th><th class="c">Q1</th><th class="c">Q2</th><th class="c">Q3</th><th class="c">Q4</th></tr></thead>
+<tbody id="TRT"></tbody></table>
+</div>
+</div>
+
 </div>
 
 <script>
@@ -363,9 +339,11 @@ var INPUTS = [
   "f7_0","f8_0"
 ];
 
-function setSaveBtn(txt, bg) {
+function setSaveBtn(txt, bg, status) {
   var btn = document.getElementById("savebtn");
+  var sts = document.getElementById("sync-status");
   if (btn) { btn.textContent = txt; btn.style.background = bg; }
+  if (sts) { sts.textContent = status; }
 }
 
 function saveData() {
@@ -375,25 +353,23 @@ function saveData() {
     el = document.getElementById(INPUTS[i]);
     if (el) { obj[INPUTS[i]] = el.value; }
   }
-  setSaveBtn("Menyimpan...", "#b45309");
+  setSaveBtn("Menyimpan...", "#b45309", "Menyimpan ke Firebase...");
   fetch(DB + "/iku/Q" + (CQ + 1) + ".json", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(obj)
   })
   .then(function() {
-    setSaveBtn("Tersimpan!", "#16a34a");
-    setTimeout(function() { setSaveBtn("Simpan Data", "#1e40af"); }, 2000);
+    setSaveBtn("Simpan Data", "#1e40af", "Tersimpan: " + new Date().toLocaleTimeString());
   })
   .catch(function() {
-    setSaveBtn("Gagal! Coba lagi", "#dc2626");
-    setTimeout(function() { setSaveBtn("Simpan Data", "#1e40af"); }, 2000);
+    setSaveBtn("Simpan Data", "#1e40af", "Gagal menyimpan. Cek koneksi internet.");
   });
 }
 
 function loadData() {
   var i, el;
-  setSaveBtn("Memuat...", "#b45309");
+  setSaveBtn("Simpan Data", "#1e40af", "Memuat data...");
   fetch(DB + "/iku/Q" + (CQ + 1) + ".json")
   .then(function(res) { return res.json(); })
   .then(function(obj) {
@@ -406,11 +382,12 @@ function loadData() {
         }
       }
     }
-    setSaveBtn("Simpan Data", "#1e40af");
+    setSaveBtn("Simpan Data", "#1e40af", "Data dimuat dari Firebase");
     refreshOv();
+    refreshTr();
   })
   .catch(function() {
-    setSaveBtn("Simpan Data", "#1e40af");
+    setSaveBtn("Simpan Data", "#1e40af", "Gagal memuat. Cek koneksi internet.");
   });
 }
 
@@ -458,6 +435,13 @@ function clr(r, t) {
   if (isNaN(r)) return "#aaa";
   if (r >= t) return "#16a34a";
   return "#dc2626";
+}
+
+function capClr(c) {
+  if (c === null) return "nd";
+  if (c >= 100) return "capaian-good";
+  if (c >= 90) return "capaian-warn";
+  return "capaian-bad";
 }
 
 function calcAB(ii) {
@@ -522,21 +506,30 @@ function calcS(ii, si) {
 function setQ(idx, el) {
   CQ = idx;
   var i;
-  var btns = document.querySelectorAll(".qbar button");
+  var btns = document.querySelectorAll(".bar button");
   for (i = 0; i < 4; i = i + 1) { btns[i].className = ""; }
   el.className = "on";
   loadData();
-  refreshAll();
 }
 
 function setTab(idx, el) {
   var i;
-  for (i = 0; i < 2; i = i + 1) { document.getElementById("T"+i).style.display = "none"; }
+  for (i = 0; i < 3; i = i + 1) { document.getElementById("T"+i).style.display = "none"; }
   document.getElementById("T"+idx).style.display = "block";
-  var btns = document.querySelectorAll(".tbar button");
-  for (i = 0; i < 2; i = i + 1) { btns[i].className = ""; }
+  var btns = document.querySelectorAll(".bar button");
+  for (i = 4; i < 7; i = i + 1) { btns[i].className = ""; }
   el.className = "on";
-  refreshAll();
+  refreshOv();
+  refreshTr();
+}
+
+function setSubTab(idx, el) {
+  var i;
+  for (i = 0; i < 3; i = i + 1) { document.getElementById("ST"+i).style.display = "none"; }
+  document.getElementById("ST"+idx).style.display = "block";
+  var btns = document.querySelectorAll(".subtabs button");
+  for (i = 0; i < btns.length; i = i + 1) { btns[i].className = ""; }
+  el.className = "on";
 }
 
 function tog(idx) {
@@ -567,15 +560,15 @@ function svb(ii) {
 }
 
 function refreshOv() {
-  var i, r, t, cls, txt, rows, achieved, total, sumR, fail, pct, barW;
-  rows = "";
-  achieved = 0;
-  total = 0;
-  sumR = 0;
-  fail = 0;
+  var i, r, t, cls, txt, rows, achieved, total, sumR, fail;
+  var rowsSeksi, rowsCap, cap, capTxt, capCls, sr0, sr1, sr2, sr3;
+  rows = ""; rowsSeksi = ""; rowsCap = "";
+  achieved = 0; total = 0; sumR = 0; fail = 0;
+
   for (i = 0; i < 9; i = i + 1) {
     r = calc(i);
     t = tgt(i, CQ);
+
     if (r !== null) {
       if (!isNaN(r)) {
         total = total + 1;
@@ -584,6 +577,7 @@ function refreshOv() {
         else { fail = fail + 1; }
       }
     }
+
     cls = "nd"; txt = "No Data";
     if (r !== null) {
       if (!isNaN(r)) {
@@ -592,36 +586,73 @@ function refreshOv() {
         else { cls = "r"; txt = "Belum Tercapai"; }
       }
     }
-    barW = 0;
-    if (r !== null) { if (!isNaN(r)) { barW = r; if (barW > 100) barW = 100; } }
-    rows = rows + "<div class='iku-card'>";
-    rows = rows + "<div class='top'><span class='name'>" + lbl(i) + "</span>";
-    rows = rows + "<span class='val' style='color:" + clr(r,t) + "'>" + fmt(r) + "</span></div>";
-    rows = rows + "<div class='bot'><span class='tgt'>Target " + t + "%</span>";
-    rows = rows + "<div class='bar-bg'><div class='bar-fg' style='width:" + barW + "%;background:" + clr(r,t) + "'></div></div>";
-    rows = rows + "<span class='badge " + cls + "'>" + txt + "</span></div></div>";
-  }
-  document.getElementById("iku-list").innerHTML = rows;
 
+    rows = rows + "<tr><td>" + lbl(i) + "</td>";
+    rows = rows + "<td class='c'>" + t + "%</td>";
+    rows = rows + "<td class='c' style='font-weight:bold;color:" + clr(r,t) + "'>" + fmt(r) + "</td>";
+    rows = rows + "<td class='c'><span class='" + cls + "'>" + txt + "</span></td></tr>";
+
+    /* Realisasi per Seksi */
+    if (i <= 6) {
+      sr0 = calcS(i, 0); sr1 = calcS(i, 1); sr2 = calcS(i, 2); sr3 = calcS(i, 3);
+      rowsSeksi = rowsSeksi + "<tr><td>" + lbl(i) + "</td><td class='c'>" + t + "%</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' style='color:" + clr(sr0,t) + ";font-weight:bold'>" + fmt(sr0) + "</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' style='color:" + clr(sr1,t) + ";font-weight:bold'>" + fmt(sr1) + "</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' style='color:" + clr(sr2,t) + ";font-weight:bold'>" + fmt(sr2) + "</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' style='color:" + clr(sr3,t) + ";font-weight:bold'>" + fmt(sr3) + "</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' style='color:" + clr(r,t) + ";font-weight:bold'>" + fmt(r) + "</td></tr>";
+    } else {
+      rowsSeksi = rowsSeksi + "<tr><td>" + lbl(i) + "</td><td class='c'>" + t + "%</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' colspan='4' style='color:#aaa;text-align:center'>Bidang (tidak dibagi per Seksi)</td>";
+      rowsSeksi = rowsSeksi + "<td class='c' style='color:" + clr(r,t) + ";font-weight:bold'>" + fmt(r) + "</td></tr>";
+    }
+
+    /* Capaian = Realisasi / Target x 100 */
+    cap = null;
+    if (r !== null) { if (!isNaN(r)) { cap = (r / t) * 100; } }
+    capCls = "nd"; capTxt = "No Data";
+    if (cap !== null) {
+      if (cap >= 100) { capCls = "g"; capTxt = "Tercapai"; }
+      else if (cap >= 90) { capCls = "y"; capTxt = "Mendekati"; }
+      else { capCls = "r"; capTxt = "Belum Tercapai"; }
+    }
+    rowsCap = rowsCap + "<tr><td>" + lbl(i) + "</td>";
+    rowsCap = rowsCap + "<td class='c'>" + t + "%</td>";
+    rowsCap = rowsCap + "<td class='c' style='color:" + clr(r,t) + ";font-weight:bold'>" + fmt(r) + "</td>";
+    rowsCap = rowsCap + "<td class='c' style='font-weight:bold'>";
+    if (cap !== null) { rowsCap = rowsCap + "<span class='" + capClr(cap) + "'>" + cap.toFixed(1) + "%</span>"; }
+    else { rowsCap = rowsCap + "<span class='nd'>-</span>"; }
+    rowsCap = rowsCap + "</td>";
+    rowsCap = rowsCap + "<td class='c'><span class='" + capCls + "'>" + capTxt + "</span></td></tr>";
+  }
+
+  document.getElementById("OVT").innerHTML = rows;
+  document.getElementById("SEKSI-TBL").innerHTML = rowsSeksi;
+  document.getElementById("CAP-TBL").innerHTML = rowsCap;
   document.getElementById("K0").textContent = achieved + "/" + total;
-  document.getElementById("K3").textContent = achieved;
   document.getElementById("K2").textContent = fail;
   if (total > 0) { document.getElementById("K1").textContent = (sumR / total).toFixed(1) + "%"; }
   else { document.getElementById("K1").textContent = "-"; }
-
-  pct = total > 0 ? Math.round((achieved / total) * 100) : 0;
-  document.getElementById("prog-bar").style.width = pct + "%";
-  document.getElementById("prog-txt").textContent = achieved + " dari " + total + " indikator tercapai";
-  document.getElementById("prog-lbl").textContent = "Progress Q" + (CQ + 1) + " 2026";
+  document.getElementById("OVH").textContent = "Status Indikator - Q" + (CQ + 1) + " 2026";
 }
 
-function refreshAll() {
-  refreshOv();
-  loadData();
-  refreshOv();
+function refreshTr() {
+  var i, r, t, rows;
+  rows = "";
+  for (i = 0; i < 9; i = i + 1) {
+    t = tgt(i, CQ);
+    rows = rows + "<tr><td>" + lbl(i) + "</td><td class='c'>" + t + "%</td>";
+    r = calc(i);
+    rows = rows + "<td class='c' style='font-weight:bold;color:" + clr(r, tgt(i,0)) + "'>" + fmt(r) + "</td>";
+    rows = rows + "<td class='c' style='color:#aaa'>-</td>";
+    rows = rows + "<td class='c' style='color:#aaa'>-</td>";
+    rows = rows + "<td class='c' style='color:#aaa'>-</td>";
+    rows = rows + "</tr>";
+  }
+  document.getElementById("TRT").innerHTML = rows;
 }
 
-refreshAll();
+loadData();
 </script>
 </body>
 </html>
